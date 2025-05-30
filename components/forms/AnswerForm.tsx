@@ -132,7 +132,7 @@ const AnswerForm = ({ id, mongoUserId, question }: Props) => {
           <br />
 
           <Button
-            className="bg-orange-500 rounded-full hover:bg-orange-600"
+            className="bg-orange-500 dark:bg-orange-500 dark:text-white rounded-full hover:bg-orange-600 hover:dark:bg-orange-600"
             type="submit"
           >
             Post Answer

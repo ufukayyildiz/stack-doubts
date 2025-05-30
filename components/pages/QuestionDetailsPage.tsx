@@ -7,6 +7,7 @@ import AnswerForm from '../forms/AnswerForm';
 import QuestionInteractions from '../partials/QuestionInteractions';
 import StackyAIAnswer from '../partials/StackyAIAnswer';
 import { timeAgo } from '@/utils/data-manipulation';
+import Link from 'next/link';
 
 interface Props {
   id: string;
@@ -23,16 +24,19 @@ const QuestionDetailsPage = async ({ id, mongoUserId }: Props) => {
   return (
     <div className="mt-8 pb-24 lg:pb-14">
       <div className="flex justify-between mb-2">
-        <div className="flex items-center justify-center">
+        <Link
+          href={`/profile/${question?.author?._id}`}
+          className="flex items-center justify-center"
+        >
           <img
             src={question?.author?.picture}
             className="h-6 mr-2 rounded-full"
             alt={`Profile of ${question?.author?.name}`}
           />
-          <div className="text-base md:text-lg font-medium mr-4">
+          <div className="text-base md:text-lg font-medium mr-4 hover:underline transition duration-200">
             {question?.author?.name}
           </div>
-        </div>
+        </Link>
         <QuestionInteractions
           userId={mongoUserId}
           question={JSON.stringify(question)}
@@ -49,11 +53,11 @@ const QuestionDetailsPage = async ({ id, mongoUserId }: Props) => {
         </div>
         <div className="flex items-center gap-1">
           <TbEye className="text-base" />
-          <div className="text-sm">Views: {question?.views}</div>
+          <div className="text-sm">{question?.views} Views</div>
         </div>
         <div className="hidden sm:flex  items-center gap-1">
           <TbMessageCircle className="text-base" />
-          <div className="text-sm">Answers: {question?.answers?.length}</div>
+          <div className="text-sm">{question?.answers?.length} Answers</div>
         </div>
       </div>
 
